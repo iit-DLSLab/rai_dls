@@ -27,7 +27,7 @@ struct OptOptions {
   RAI_PARAM("opt/", double, initStep, 1.)
   RAI_PARAM("opt/", double, minStep, -1.)
   RAI_PARAM("opt/", double, maxStep, .2)
-  RAI_PARAM("opt/", double, damping, 1.)
+  RAI_PARAM("opt/", double, damping, 0.2)
   RAI_PARAM("opt/", double, stepInc, 1.5)
   RAI_PARAM("opt/", double, stepDec, .5)
   RAI_PARAM("opt/", double, wolfe, .01)

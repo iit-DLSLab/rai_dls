@@ -131,6 +131,6 @@ void AStar::reportQueue() {
   }
 }
 
-RUN_ON_INIT_BEGIN(manipulationTree)
-AStar_NodeL::memMove = true;
-RUN_ON_INIT_END(manipulationTree)
+// RUN_ON_INIT_BEGIN(manipulationTree)
+// AStar_NodeL::memMove = true;
+// RUN_ON_INIT_END(manipulationTree)

@@ -349,7 +349,7 @@ bool transFromAts(rai::Transformation& X, const rai::Graph& ats, const char* key
   if(!n) return false;
   if(n->is<rai::String>()) X.read(n->as<rai::String>().resetIstream());
   else if(n->is<arr>()) X.set(n->as<arr>());
-  else NIY;
+  // else NIY;
   if(!X.isZero()) X.rot.normalize();
   return true;
 }

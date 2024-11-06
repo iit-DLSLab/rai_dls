@@ -73,8 +73,7 @@ void TEST(RRT){
     komo.addObjective({}, FS_positionDiff, {"l_gripper", "target2"}, OT_eq, {1e1});
     auto ret = NLP_Solver(komo.nlp(), 0).solve();
     q1 = ret->x;
-    cout <<"start pose: " <<*ret <<endl;
-  }
+   }
 
   run_rrt(C, q0, q1);
 }

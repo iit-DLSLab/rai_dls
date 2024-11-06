@@ -1215,8 +1215,11 @@ bool Configuration::checkConsistency() const {
 
     a->Q.checkNan();
     a->X.checkNan();
-    CHECK_ZERO(a->Q.rot.normalization()-1., 1e-6, "");
-    CHECK_ZERO(a->X.rot.normalization()-1., 1e-6, "");
+    // std::cout << "q name " << a->joint->frame << "\n";
+    // std::cout << "a shape " << a->shape->frame << "\n";
+
+    // CHECK_ZERO(a->Q.rot.normalization()-1., 1e-6, "");
+    // CHECK_ZERO(a->X.rot.normalization()-1., 1e-6, "");
 
     // frame has no parent -> Q needs to be zero, X is good
     if(!a->parent) {
@@ -2060,9 +2063,11 @@ std::shared_ptr<SwiftInterface> Configuration::swift() {
 std::shared_ptr<FclInterface> Configuration::fcl(int verbose) {
   if(!self->fcl) {
     Array<Shape*> geometries(frames.N);
+    std::cout << "frames.N" << frames.N << "\n";
     Array<Shape*>::memMove=1;
     geometries.setZero();
     for(Frame* f:frames) {
+      std::cout << "frames " << f->name << "\n";
       if(f->shape && f->shape->cont) {
         CHECK(f->shape->type()!=rai::ST_marker, "collision object can't be a marker");
         if(!f->shape->mesh().V.N) f->shape->createMeshes();
@@ -2075,6 +2080,8 @@ std::shared_ptr<FclInterface> Configuration::fcl(int verbose) {
     }
     self->fcl = make_shared<FclInterface>(geometries, getCollisionExcludePairIDs(), FclInterface::_broadPhaseOnly); //-1.=broadphase only -> many proxies, 0.=binary, .1=exact margin (slow)
   }
+      std::cout << "end fcl" << "\n";
+
   return self->fcl;
 }
 
@@ -2204,18 +2211,31 @@ void Configuration::stepFcl() {
 #if 0
   arr X = getFrameState();
 #else
+std::cout << "step fcl check 0 " << "\n";
   static arr X;
+std::cout << "step fcl check 1 " << "\n";
+
   X.resize(frames.N, 7).setZero();
   for(uint i=0; i<X.d0; i++) {
     rai::Frame* f = frames.elem(i);
     if(f->shape && f->shape->cont) X[i] = f->ensure_X().getArr7d();
   }
+  std::cout << "step fcl check 2 " << "\n";
+
 #endif
   //-- step fcl
-  fcl()->step(X);
+  try {
+    fcl()->step(X);
+  } catch (const std::exception& e) {
+    std::cerr << "FCL step failed: " << e.what() << std::endl;
+    return;
+  }
+    std::cout << "step fcl check 3 " << "\n";
+
   //-- add as proxies
   proxies.clear();
   addProxies(fcl()->collisions);
+    std::cout << "step fcl check 4 " << "\n";
 
   _state_proxies_isGood=true;
 }

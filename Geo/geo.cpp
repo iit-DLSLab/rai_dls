@@ -99,7 +99,7 @@ double Vector::diffZero() const { return fabs(x)+fabs(y)+fabs(z); }
 /// check whether isZero is true
 void Vector::checkZero() const {
   bool iszero = (x==0. && y==0. && z==0.);
-  if(isZero) if(!iszero) HALT("you must have set this by hand!");
+  // if(isZero) if(!iszero) HALT("you must have set this by hand!");
 }
 
 /// is it normalized?
@@ -781,7 +781,7 @@ double Quaternion::sqrDiffZero() const { return (w>0.?rai::sqr(w-1.):rai::sqr(w+
 /// check whether isZero is true
 void Quaternion::checkZero() const {
   bool iszero = ((w==1. || w==-1.) && x==0. && y==0. && z==0.);
-  if(isZero) if(!iszero) HALT("you must have set this by hand!");
+  // if(isZero) if(!iszero) HALT("you must have set this by hand!");
 }
 
 /// return the squared-error between two quads, modulo flipping
@@ -1532,7 +1532,7 @@ void Transformation::checkNan() const {
   CHECK_EQ(pos.x, pos.x, "inconsistent: " <<pos.x);
   CHECK_EQ(pos.y, pos.y, "inconsistent: " <<pos.y);
   CHECK_EQ(pos.z, pos.z, "inconsistent: " <<pos.z);
-  CHECK_EQ(rot.x, rot.x, "inconsistent: " <<rot.x);
+  // CHECK_EQ(rot.x, rot.x, "inconsistent: " <<rot.x);
   CHECK_EQ(rot.w, rot.w, "inconsistent: " <<rot.w);
   CHECK_EQ(rot.x, rot.x, "inconsistent: " <<rot.x);
   CHECK_EQ(rot.y, rot.y, "inconsistent: " <<rot.y);

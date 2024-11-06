@@ -56,6 +56,8 @@ struct KOMO : NonCopyable {
 
   //-- optimizer
   arr x, dual;                    ///< the primal and dual solution
+  std::vector<double> xInit;
+  bool setInitFromIK = false;
 
   //-- options
   rai::KOMO_Options opt;
@@ -83,6 +85,19 @@ struct KOMO : NonCopyable {
 
   //-- higher-level default setups
   void setIKOpt(); ///< setTiming(1., 1, 1., 1); and velocity objective
+
+  void setInitializationVector(const std::vector<double> &initVec)
+  {
+    xInit = initVec;
+    // Additional code here if needed, e.g., to handle the initialization logic
+  }
+
+  void setInitializationFromIK(bool setInitializationFromIK)
+  {
+    setInitFromIK = setInitializationFromIK;
+  }
+
+
 
   //===========================================================================
   //

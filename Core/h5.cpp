@@ -8,7 +8,7 @@
 
 #include "h5.h"
 
-#ifdef RAI_H5
+// #ifdef RAI_H5
 
 #include <H5Cpp.h>
 
@@ -112,15 +112,15 @@ void H5_Reader::readAll() {
   H5Literate(file->getId(), H5_INDEX_NAME, H5_ITER_INC, NULL, file_callback, this);
 }
 
-#else
+// #else
 
-H5_Writer::H5_Writer(const char* filename) { NICO }
-template<class T> void H5_Writer::add(const char* name, const rai::Array<T>& x) { NICO }
-H5_Reader::H5_Reader(const char* filename) { NICO }
-template<class T> rai::Array<T> H5_Reader::read(const char* name) { NICO }
-bool H5_Reader::exists(const char* name) { NICO }
+// H5_Writer::H5_Writer(const char* filename) { NICO }
+// template<class T> void H5_Writer::add(const char* name, const rai::Array<T>& x) { NICO }
+// H5_Reader::H5_Reader(const char* filename) { NICO }
+// template<class T> rai::Array<T> H5_Reader::read(const char* name) { NICO }
+// bool H5_Reader::exists(const char* name) { NICO }
 
-#endif
+// #endif
 
 // explicit instantiations
 template void H5_Writer::add<double>(const char* name, const rai::Array<double>& x);
