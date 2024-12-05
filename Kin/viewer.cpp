@@ -232,9 +232,7 @@ byteA rai::ConfigurationViewer::getScreenshot() {
 }
 
 void rai::ConfigurationViewer::recopyMeshes(const rai::Configuration& _C) {
-  std::cout << "before ensuring gl " << "\n";
   ensure_gl();
-  std::cout << "after ensuring gl " << "\n";
 
   {
     auto _dataLock = gl->dataLock(RAI_HERE);

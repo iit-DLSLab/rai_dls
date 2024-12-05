@@ -366,11 +366,8 @@ rai::Array<rai::Joint *> getMatchingJoints(const ConfigurationL &Ktuple, bool ze
 
 void F_qLimits2::phi2(arr &y, arr &J, const FrameL &F)
 {
-  std::cout << "setting joint limits inside function " << "\n";
 
   uint M = dim_phi2(F);
-  std::cout << "M " << M << "\n";
-  std::cout << "LIMITS: J dimensions: " << J.d0 << " x " << J.d1 << "\n";
 
   F.last()->C.kinematicsZero(y, J, M);
   uint m = 0;
@@ -434,7 +431,6 @@ DofL getDofs(const FrameL &F)
 //===========================================================================
 void F_qLimits::phi2(arr &y, arr &J, const FrameL &F)
 {
-  std::cout << "setting joint limits inside function " << "\n";
   uint M = dim_phi2(F);
 
   // std::cout << "M " << M << "\n";
@@ -443,7 +439,6 @@ void F_qLimits::phi2(arr &y, arr &J, const FrameL &F)
   CHECK(F.last()->C._state_q_isGood, "");
   uint m = 0;
   DofL dofs = getDofs(F);
-  std::cout << "LIMITS: J dimensions: " << J.d0 << " x " << J.d1 << "\n";
 
   for (rai::Dof *dof : dofs)
     if (dof->limits.N)
@@ -483,7 +478,6 @@ void F_qLimits::phi2(arr &y, arr &J, const FrameL &F)
         }
       }
     }
-  std::cout << "JLIMITS " << J << "\n";
 
   CHECK_EQ(m, M, "");
   // std::cout << "J " << J << "\n";

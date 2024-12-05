@@ -639,79 +639,22 @@ ptr<Objective> KOMO::add_qControlObjective(const arr &times, uint order, double 
 
   std::cout << "entering here" << "\n";
   CHECK_GE(k_order, order, "");
-  // if (order == 0)
-  // {
-  //   F.scale.elem(0) = 1e1;
-  //   F.scale.elem(1) = 1e1;
-  //   F.scale.elem(2) = 1e2;
-  //   F.scale.elem(3) = 1e3;
-  //   // // F.scale.elem(1) = 1e1;
-  //   // F.scale.elem(2) = 1e-1;
-  //   F.scale.elem(4) = 1e2;
-
-  //   // F.scale.elem(5) = 1e3;
-  //   // F.scale.elem(6) = 1e2;
-  //   // F.scale.elem(7) = 1e3;
-  //   // F.scale.elem(8) = 1e2;
-  //   // F.scale.elem(9) = 1e2;
-  //   // F.scale.elem(10) = 1e2;
-  //   // F.scale.elem(11) = 1e3;
-  //   F.scale.elem(5) = 1e1;
-  //   F.scale.elem(6) = 1e1;
-  //   F.scale.elem(7) = 1e1;
-  //   F.scale.elem(8) = 1e1;
-  //   F.scale.elem(9) = 1e1;
-  //   F.scale.elem(10) = 1e1;
-  //   F.scale.elem(11) = 1e1;
-  // }
-
+  
   if (order == 0)
   {
     F.scale.elem(0) = 1e1;
     F.scale.elem(1) = 1e1;
     F.scale.elem(2) = 1e1;
     F.scale.elem(3) = 1e1;
-    // // F.scale.elem(1) = 1e1;
-    // F.scale.elem(2) = 1e-1;
     F.scale.elem(4) = 1e1;
 
-    // F.scale.elem(5) = 1e3;
-    // F.scale.elem(6) = 1e2;
-    // F.scale.elem(7) = 1e3;
-    // F.scale.elem(8) = 1e2;
-    // F.scale.elem(9) = 1e2;
-    // F.scale.elem(10) = 1e2;
-    // F.scale.elem(11) = 1e3;
+
     F.scale.elem(5) = 1e1;
     F.scale.elem(6) = 1e1;
     F.scale.elem(7) = 1e1;
     F.scale.elem(8) = 1e1;
     F.scale.elem(9) = 1e1;
   }
-
-  // if (order == 2)
-  // {
-  //   F.scale.elem(4) = 80;
-  // }
-  // if (order == 2)
-  //  {
-  //   F.scale.elem(0) = 1;
-  //   F.scale.elem(1) = 1;
-  //   F.scale.elem(2) = 1;
-  //    F.scale.elem(3) = 1e1;
-  //   // // F.scale.elem(1) = 1e1;
-  //   // F.scale.elem(2) = 1e-1;
-  //   F.scale.elem(4) = 1e-1;
-
-  //   F.scale.elem(5) = 1e1;
-  //   F.scale.elem(6) = 1e0;
-  //   F.scale.elem(7) = 1e1;
-  //   F.scale.elem(8) = 1e0;
-  //   F.scale.elem(9) = 1e0;
-  //   F.scale.elem(10) = 1e0;
-  //   F.scale.elem(11) = 1e1;
-
-  // }
 
   ptr<Objective> o = addObjective(times, make_shared<F_qItself>(F.frames, (order == 0)), {}, OT_sos, scale * F.scale, target, order, deltaFromStep, deltaToStep);
   o->feat->timeIntegral = 1;
@@ -1912,9 +1855,6 @@ void KOMO::checkGradients()
 
 int KOMO::view(bool pause, const char *txt)
 {
-    std::cout << "before pathconfig recpoy meshes " << "\n";
-    std::cout << "pathConfig " << pathConfig << "\n";
-
   pathConfig.gl()->recopyMeshes(pathConfig);
   return pathConfig.watch(pause, txt);
 }
