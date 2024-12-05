@@ -141,11 +141,12 @@ OptOptions::OptOptions() {
   wolfe     = rai::getParameter<double>("opt/wolfe", .01);
   nonStrictSteps= rai::getParameter<double> ("opt/nonStrictSteps", 0);
   allowOverstep= rai::getParameter<bool> ("opt/allowOverstep", false);
-  constrainedMethod = (ConstrainedMethodType)rai::getParameter<double>("opt/constrainedMethod", squaredPenaltyFixed);
+  constrainedMethod = (ConstrainedMethodType)rai::getParameter<double>("opt/constrainedMethod", augmentedLag);
   muInit = rai::getParameter<double>("opt/muInit", 1.2);
   muLBInit = rai::getParameter<double>("opt/muLBInit", 1.);
   aulaMuInc = rai::getParameter<double>("opt/aulaMuInc", 5.);
 }
+
 
 void OptOptions::write(std::ostream& os) const {
 #define WRT(x) os <<#x <<" = " <<x <<endl;
