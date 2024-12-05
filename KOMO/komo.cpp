@@ -584,18 +584,6 @@ ptr<Objective> KOMO::add_qControlObjectivePosition(const arr &times, arr scaleFa
   auto F = getCtrlFramesAndScale(world);
   //  scale *= sqrt(tau);
   int order = 0;
-  // F.scale.elem(0) = scaleFactors(0);
-  // F.scale.elem(1) = scaleFactors(1);
-  // F.scale.elem(2) = scaleFactors(2);
-  // F.scale.elem(3) = scaleFactors(3);
-  // F.scale.elem(4) = scaleFactors(4);
-  // F.scale.elem(5) = scaleFactors(5);
-  // F.scale.elem(6) = scaleFactors(6);
-  // F.scale.elem(7) = scaleFactors(7);
-  // F.scale.elem(8) = scaleFactors(8);
-  // F.scale.elem(9) = scaleFactors(9);
-  // F.scale.elem(10) = scaleFactors(10);
-  // F.scale.elem(11) = scaleFactors(11);
 
   // Base
   F.scale.elem(0) = scaleFactors(0);
