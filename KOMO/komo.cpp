@@ -596,6 +596,7 @@ ptr<Objective> KOMO::add_qControlObjectivePosition(const arr &times, arr scaleFa
   // F.scale.elem(9) = scaleFactors(9);
   // F.scale.elem(10) = scaleFactors(10);
   // F.scale.elem(11) = scaleFactors(11);
+
   // Base
   F.scale.elem(0) = scaleFactors(0);
   F.scale.elem(1) = scaleFactors(1);
@@ -619,6 +620,7 @@ ptr<Objective> KOMO::add_qControlObjectivePosition(const arr &times, arr scaleFa
 ptr<Objective> KOMO::add_qControlObjectiveAcceleration(const arr &times, arr scaleFactors)
 {
   auto F = getCtrlFramesAndScale(world);
+
   //  scale *= sqrt(tau);
   int order = 2;
   // F.scale.elem(4) = scaleFactors(4);
@@ -1931,10 +1933,8 @@ int KOMO::view(bool pause, const char *txt)
 
 int KOMO::view_play(bool pause, double delay, const char *saveVideoPath)
 {
-  std::cout << "entering here to view" << "\n";
 
   view(false, 0);
-  std::cout << "after view " << "\n";
   return pathConfig.gl()->playVideo(timeSlices.d0, timeSlices.d1, pause, delay * tau * T, saveVideoPath);
 }
 
