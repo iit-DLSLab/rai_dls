@@ -76,7 +76,45 @@ void boundClip(MathematicalProgram& P, arr& x){
 // optimization options
 //
 
+// OptOptions::OptOptions() {
+//   __globalOptOptions = this;
+//   verbose    = rai::getParameter<double> ("opt/verbose", 3);
+//   fmin_return=nullptr;
+//   stopTolerance= rai::getParameter<double>("opt/stopTolerance", 1e-3);
+//   stopFTolerance= rai::getParameter<double>("opt/stopFTolerance", 1e-3);
+//   stopGTolerance= rai::getParameter<double>("opt/stopGTolerance", -1.);
+//   stopEvals = rai::getParameter<double> ("opt/stopEvals", 10000);
+//   stopIters = rai::getParameter<double> ("opt/stopIters", 5000);
+//   stopOuters = rai::getParameter<double> ("opt/stopOuters", 1000);
+//   stopLineSteps = rai::getParameter<double> ("opt/stopLineSteps", 100);
+//   stopTinySteps = rai::getParameter<double> ("opt/stopTinySteps", 100);
+//   // initStep  = rai::getParameter<double>("opt/initStep", 1.);
+//   initStep  = rai::getParameter<double>("opt/initStep", 0.2);
+
+//   minStep   = rai::getParameter<double>("opt/minStep", -1.);
+//   // maxStep   = rai::getParameter<double>("opt/maxStep", 1.5);
+//   maxStep   = rai::getParameter<double>("opt/maxStep", 0.2);
+
+//   // damping   = rai::getParameter<double>("opt/damping", 0.5);
+//   // stepInc   = rai::getParameter<double>("opt/stepInc", 0.5);
+//   // stepDec   = rai::getParameter<double>("opt/stepDec", .5);
+//   damping   = rai::getParameter<double>("opt/damping", 0.8);
+//   stepInc   = rai::getParameter<double>("opt/stepInc", 0.05);
+//   stepDec   = rai::getParameter<double>("opt/stepDec", .05);
+//   dampingInc= rai::getParameter<double>("opt/dampingInc", 0.5);
+//   dampingDec= rai::getParameter<double>("opt/dampingDec", 0.1);
+//   wolfe     = rai::getParameter<double>("opt/wolfe", .01);
+//   nonStrictSteps= rai::getParameter<double> ("opt/nonStrictSteps", 0);
+//   allowOverstep= rai::getParameter<bool> ("opt/allowOverstep", false);
+//   constrainedMethod = (ConstrainedMethodType)rai::getParameter<double>("opt/constrainedMethod", squaredPenaltyFixed);
+//   muInit = rai::getParameter<double>("opt/muInit", 1.2);
+//   muLBInit = rai::getParameter<double>("opt/muLBInit", 1.);
+//   aulaMuInc = rai::getParameter<double>("opt/aulaMuInc", 5.);
+// }
+
+
 OptOptions::OptOptions() {
+  
   __globalOptOptions = this;
   verbose    = rai::getParameter<double> ("opt/verbose", 3);
   fmin_return=nullptr;
@@ -88,19 +126,16 @@ OptOptions::OptOptions() {
   stopOuters = rai::getParameter<double> ("opt/stopOuters", 1000);
   stopLineSteps = rai::getParameter<double> ("opt/stopLineSteps", 100);
   stopTinySteps = rai::getParameter<double> ("opt/stopTinySteps", 100);
-  // initStep  = rai::getParameter<double>("opt/initStep", 1.);
-  initStep  = rai::getParameter<double>("opt/initStep", 0.2);
+  initStep  = rai::getParameter<double>("opt/initStep", 1.);
 
   minStep   = rai::getParameter<double>("opt/minStep", -1.);
-  // maxStep   = rai::getParameter<double>("opt/maxStep", 1.5);
-  maxStep   = rai::getParameter<double>("opt/maxStep", 0.2);
+  maxStep   = rai::getParameter<double>("opt/maxStep", 1.5);
 
-  // damping   = rai::getParameter<double>("opt/damping", 0.5);
-  // stepInc   = rai::getParameter<double>("opt/stepInc", 0.5);
-  // stepDec   = rai::getParameter<double>("opt/stepDec", .5);
-  damping   = rai::getParameter<double>("opt/damping", 0.8);
-  stepInc   = rai::getParameter<double>("opt/stepInc", 0.05);
-  stepDec   = rai::getParameter<double>("opt/stepDec", .05);
+  // More you decrease the damping, less steps forward you do with the solution
+  // More you decrease the stepInc and stepDec, less steps forward you do with the solution
+  damping   = rai::getParameter<double>("opt/damping", 0.5);
+  stepInc   = rai::getParameter<double>("opt/stepInc", 0.5);
+  stepDec   = rai::getParameter<double>("opt/stepDec", .5);
   dampingInc= rai::getParameter<double>("opt/dampingInc", 0.5);
   dampingDec= rai::getParameter<double>("opt/dampingDec", 0.1);
   wolfe     = rai::getParameter<double>("opt/wolfe", .01);
